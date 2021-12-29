@@ -55,6 +55,7 @@ local function todo_service()
     end
   end
 
+  --- Saves todos to file
   function save_to_file()
     file_handler.save_content_to_file(FULL_FILE_NAME, _todos)
   end

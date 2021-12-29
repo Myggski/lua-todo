@@ -5,6 +5,9 @@ local TodoService = require('./src/todo/models/todoService')
 local todo_controller = {}
 local service = TodoService()
 
+--- Changes the description of the selected todo
+--- @param selected_todo_index number
+--- @param old_description string
 local update_todo_description = function(selected_todo_index, old_description)
   local new_description_input
 
@@ -17,16 +20,24 @@ local update_todo_description = function(selected_todo_index, old_description)
   todo_view.description_updated(old_description, new_description_input)
 end
 
+--- Toggles the todos status, if status is true it sets it to false, and vice versa
+--- @param selected_todo_index number
+--- @param selected_todo table
 local update_todo_status = function(selected_todo_index, selected_todo)
   service.toggle_status(selected_todo_index)
   todo_view.update_status(selected_todo)
 end 
 
+--- Removes the selected todo
+--- @param selected_todo_index index
+--- @param selected_todo table
 local remove_todo = function(selected_todo_index, selected_todo)
   service.remove(selected_todo_index)
   todo_view.todo_removed(selected_todo.description)
 end 
 
+--- Selects a todo from list and displays a menu of actions that the user can do with the todo
+--- @param selected_todo_index
 local select_todo = function(selected_todo_index)
   local selected_todo_action_input
   local selected_todo = service.get(selected_todo_index)
@@ -50,7 +61,7 @@ local select_todo = function(selected_todo_index)
   until selected_todo_action_input == REMOVE_TODO_ACTION or selected_todo_action_input == BACK_TO_MENU_OPTION
 end
 
---- Adds todo to the list
+--- User types in a description and then it creates a new todo to the list out of the description
 local add_todo = function()
   local todo_description_input
 
@@ -79,18 +90,21 @@ local list_todos = function()
   end
 end
 
+--- Tries to load todos from file
 local try_load_from_file = function()
   local status = pcall(service.load_from_file)
 
   todo_view.load_from_file(status)
 end 
 
+--- Tries to save todos to file
 local try_save_to_file = function()
   local status = pcall(service.save_to_file)
 
   todo_view.save_to_file(status)
 end
 
+--- Initial function that displays start menu that displays actions for the user
 function todo_controller.init()
   local action_input
   local EXIT_INPUT <const> = 5

@@ -1,60 +1,80 @@
 local todo_view = {}
 local SEPERATOR <const> = '=================================='
 
+--- Returns string depending on the status of the todo
+--- @param todo_status boolean
+--- @return string
 local get_status_text = function(todo_status)
   return todo_status and 'Done' or 'In-Progress'
 end
 
+--- Returns string displaying information about a single todo
+--- @param index number
+--- @param todo table
+--- @return string
 local get_todo = function(index, todo)
   local todo_string = index and string.format('%s. ', index) or ''
 
   return todo_string .. string.format('%s - %s', todo.description, get_status_text(todo.status))
 end
 
+--- Displaying text that tells the user to add a description
 function todo_view.add_todo()
   print('Add a description:')
 end
 
-function todo_view.update_description()
-  print('Enter new description text:')
-end
-
-function todo_view.update_status(todo)
-  print(string.format('"%s" has changed status from %s to %s!\n', todo.description, get_status_text(not todo.status), get_status_text(todo.status)))
-end
-
-function todo_view.description_updated(old_description, new_description)
-  print(string.format('"%s" has been updated its desciption to "%s"!\n', old_description, new_description))
-end
-
+--- Displaying text that a todo has been added
+--- @param description string
 function todo_view.todo_added(description)
   description = description or ''
 
   print(string.format('"%s" has been added!', description))
 end
 
-function todo_view.todo_not_found()
-  print('Todo not found!')
-end 
+--- Displaying text that tells the user to add a new description 
+function todo_view.update_description()
+  print('Enter new description text:')
+end
 
+--- Displaying text that a todo has changed status
+--- @param todo table
+function todo_view.update_status(todo)
+  print(string.format('"%s" has changed status from %s to %s!\n', todo.description, get_status_text(not todo.status), get_status_text(todo.status)))
+end
+
+--- Displaying text explaning that the description of a todo has been updated
+--- @param old_description string
+--- @param new_description string
+function todo_view.description_updated(old_description, new_description)
+  print(string.format('"%s" has been updated its desciption to "%s"!\n', old_description, new_description))
+end
+
+--- Displaying text explaning that a todo has been removed
+--- @param description
 function todo_view.todo_removed(description)
   description = description or ''
 
   print(string.format( '"%s" has been removed!', description))
 end 
 
+--- Displaying text explaning the status of the file loading
+--- @param status boolean
 function todo_view.load_from_file(status)
   local message = status and 'Loading from file successfully!' or 'Something went wrong when trying to load todos from file'
 
   print(message)
 end
 
+--- Displaying text explaning the status of the file saving
+--- @param status boolean
 function todo_view.save_to_file(status)
   local message = status and 'Saving to file successfully!' or 'Something went wrong when trying to save todos to file'
 
   print(message)
 end
 
+--- Displaying all the todos and requesting the user to select todo or to go back to menu
+--- @param todos table
 function todo_view.list_todos(todos)
   todos = todos or {}
 
@@ -77,6 +97,8 @@ function todo_view.list_todos(todos)
     print(list_todos_string)
 end 
 
+--- Displays menu when the user has selected a todo
+--- @param selected_todo
 function todo_view.todo_actions_menu(selected_todo)
   print(string.format([[
 Selected todo - %s
@@ -89,6 +111,7 @@ Selected todo - %s
 Select action:]], selected_todo.description, SEPERATOR, get_status_text(not selected_todo.status)))
 end
 
+--- Displays start menu
 function todo_view.start_menu()
   print(string.format([[
 

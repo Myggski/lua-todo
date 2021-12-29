@@ -1,5 +1,7 @@
 local input_handler = {}
 
+--- Listens to user input and returns the value as a number
+--- @return number
 function input_handler.get_number_input()
   local inputValue
 
@@ -16,6 +18,8 @@ function input_handler.get_number_input()
   return inputValue
 end
 
+--- Listens to user input and returns the value as a string
+--- @return string
 function input_handler.get_string_input()
   local inputValue
 

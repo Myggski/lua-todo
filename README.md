@@ -2,7 +2,8 @@
 `lua-todo` is a classic todo application made in Lua.
 
 ## Background
-I wanted to get a better understanding of Lua and its syntax. So I created a console application that has a simple CRUD functionality, that can save/load from a text file. 
+I wanted to get a better understanding of Lua and its syntax. 
+So I created a console application that has a simple CRUD functionality, that can save/load from a text file. 
 
 ## What I want to do next
 - Adding unit tests with [Busted](https://olivinelabs.com/busted/)

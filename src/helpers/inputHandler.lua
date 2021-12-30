@@ -8,7 +8,7 @@ function input_handler.get_number_input()
   repeat
     inputValue = tonumber(io.read())
     if not inputValue then
-      print("Incorrect input, try using numbers!")
+      print('Incorrect input, try using numbers!')
     end
   until inputValue
 
@@ -26,9 +26,9 @@ function input_handler.get_string_input()
   repeat
     inputValue = tostring(io.read())
     if not inputValue or inputValue == '' then
-      print("Incorrect input, try using characters")
+      print('Incorrect input, try using characters!')
     end
-  until inputValue or inputValue ~= ''
+  until inputValue and inputValue ~= ''
 
   -- To make it prettier in console
   print('')

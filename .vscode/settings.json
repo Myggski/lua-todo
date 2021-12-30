@@ -1,11 +1,1 @@
-{
-  "Lua.diagnostics.globals": [
-    "readInput",
-    "inputReader",
-    "tryGetNumber"
-  ],
-  "Lua.diagnostics.disable": [
-    "empty-block",
-    "lowercase-global"
-  ]
-}
+{}

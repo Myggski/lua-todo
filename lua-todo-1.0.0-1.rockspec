@@ -17,7 +17,8 @@ description = {
 dependencies = {
    "lua >= 5.4",
    "json-lua >= 0.1-3",
-   "busted >= 2.0.0-1"
+   "busted >= 2.0.0-1",
+   "luacov >= 0.15.0-1",
 }
 
 build = {

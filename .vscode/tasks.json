@@ -12,6 +12,15 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "Test Lua",
+      "type": "shell",
+      "command": "busted",
+      "group": {
+        "kind": "test",
+        "isDefault": true,
+      }
     }
   ]
 }

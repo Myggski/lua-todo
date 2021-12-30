@@ -6,10 +6,16 @@ local file_handler = {}
 --- @param full_file_name string
 --- @return table
 function file_handler.get_content_from_file(full_file_name)
+  if not full_file_name then
+    -- Maybe throw error later instead
+    return {}
+  end 
+
   local file_content = ''
   local file = io.open(full_file_name, "a+")
 
   if not file then
+    -- Maybe throw error later instead
     return {}
   end
 
@@ -24,10 +30,16 @@ end
 --- @param full_file_name string
 --- @param content string
 function file_handler.save_content_to_file(full_file_name, content)
+  if not full_file_name or type(content) ~= 'table' then
+    -- Maybe throw error later
+    return
+  end
+
   local file = io.open(full_file_name, "w+")
 
   if not file then
-    return {}
+    -- Maybe throw error later
+    return
   end
 
   file:seek('set', 0)
